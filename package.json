@@ -3,6 +3,7 @@
 	"publisher": "xiangheng",
 	"displayName": "xh-vscodedemo",
 	"description": "",
+	"repository": "git@github.com:adtkcn/vscodedemo.git",
 	"version": "0.0.1",
 	"engines": {
 		"vscode": "^1.54.0"
@@ -35,7 +36,7 @@
 		"lint": "eslint .",
 		"pretest": "npm run lint",
 		"test": "node ./test/runTest.js",
-		"push": "vsce publish"
+		"push": "vsce publish patch"
 	},
 	"devDependencies": {
 		"@types/vscode": "^1.54.0",
