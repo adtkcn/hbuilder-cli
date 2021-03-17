@@ -3,7 +3,11 @@
 	"publisher": "xiangheng",
 	"displayName": "xh-vscodedemo",
 	"description": "",
-	"repository": "git@github.com:adtkcn/vscodedemo.git",
+	"repository":{
+		"type": "git",
+		"url":"git@github.com:adtkcn/vscodedemo.git"
+	},
+	"icon": "media/icon.jpg",
 	"version": "0.0.1",
 	"engines": {
 		"vscode": "^1.54.0"
