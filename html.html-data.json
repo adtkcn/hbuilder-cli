@@ -1,0 +1,22 @@
+{
+	"version": 1.1,
+	"tags": [
+		{
+			"name": "my-button",
+			"description": "这是自定义的插件提示",
+			"attributes": [
+				{
+					"name": "type",
+					"description": "My button type",
+					"values": [{ "name": "alert" }]
+				}
+			],
+			"references": [
+				{
+					"name": "Bootstrap buttons",
+					"url": "https://getbootstrap.com/docs/4.0/components/buttons/"
+				}
+			]
+		}
+	]
+}

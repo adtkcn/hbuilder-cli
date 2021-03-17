@@ -16,10 +16,21 @@
 		"Other"
 	],
 	"activationEvents": [
+		"onLanguage:html",
 		"onCommand:xh-vscodedemo.helloWorld"
 	],
 	"main": "./extension.js",
 	"contributes": {
+		"html": {
+			"customData": [
+				"./html.html-data.json"
+			]
+		},
+		"css": {
+			"customData": [
+				"./css.css-data.json"
+			]
+		},
 		"commands": [
 			{
 				"command": "xh-vscodedemo.helloWorld",
