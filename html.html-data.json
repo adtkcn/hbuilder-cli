@@ -3,12 +3,15 @@
 	"tags": [
 		{
 			"name": "my-button",
-			"description": "这是自定义的插件提示",
+			"description": "按钮",
 			"attributes": [
 				{
 					"name": "type",
-					"description": "My button type",
-					"values": [{ "name": "alert" }]
+					"description": "type,不知道啥意思",
+					"values": [
+						{ "name": "alert", "description": "alert值描述" },
+						{ "name": "default" }
+					]
 				}
 			],
 			"references": [
