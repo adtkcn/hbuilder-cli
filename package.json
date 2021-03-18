@@ -2,7 +2,7 @@
 	"name": "xh-uniapp-cli",
 	"publisher": "xiangheng",
 	"displayName": "xh-uniapp-cli",
-	"description": "HBuilder的cli 工具封装,可以添加项目和打包",
+	"description": "HBuilder 的cli工具封装,可以打开HBuilder,添加项目,打包App",
 	"repository": {
 		"type": "git",
 		"url": "git@github.com:adtkcn/vscodedemo.git"

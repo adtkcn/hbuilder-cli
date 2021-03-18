@@ -1,11 +1,21 @@
-# xh-vscodedemo
+# xh-uniapp-cli
 
-1. 将项目添加到 HBuilder
+# 功能
+
+1. 打开 HBuilder,并将项目添加到 HBuilder
 2. 打包 安卓 和 ios app
 
-HBuilder 版本需要 `3.1.5` 以上
+# 插件需求
 
-需要在项目根目录创建一个名为 `uniappconfig.json` 的配置文件,内容如下
+1. HBuilder 版本需要 `3.1.5` 以上,
+2. 需要项目根目录创建一个名为 `uniappconfig.json` 的配置文件
+3. 在 vscode 设置 HBuilder 的安装目录(优先级高), 或者将目录加入系统环境变量,环境变量名称为 HBuilder (功能写了,没试...)
+
+```js
+"HBuilder.dir": "D:/办公/HBuilderX",
+```
+
+### 需要在项目根目录创建一个名为 `uniappconfig.json` 的配置文件,内容如下
 
 ```js
 {
@@ -29,7 +39,7 @@ HBuilder 版本需要 `3.1.5` 以上
     //安卓打包证书文件路径,自有证书打包填写的参数,  -------------------------绝对路径------------------
     "certfile": "E:/安卓key_证书/zdhlapp.keystore",
     //安卓打包证书密码,自有证书打包填写的参数
-    "certpassword": "NHS23456",
+    "certpassword": "certpassword",
     //安卓平台要打的渠道包 取值有"google","yyb","360","huawei","xiaomi","oppo","vivo"，如果要打多个逗号隔开
     "channels": ""
   },
