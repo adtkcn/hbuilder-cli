@@ -1,4 +1,4 @@
-# xh-uniapp-cli
+# hbuilder-cli
 
 # 功能
 
@@ -71,3 +71,13 @@
 }
 
 ```
+
+# 其他
+
+> 仓库地址
+
+```
+git@github.com:adtkcn/hbuilder-cli.git
+```
+
+> 原理: 是对 hbuilder/cli.exe 的封装
