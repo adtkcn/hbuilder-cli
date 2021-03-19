@@ -15,10 +15,11 @@ var config = null;
  * @param {*} rootPath 工作根目录
  */
 function readConfig(rootPath, callback) {
-  var uniappconfig = path.join(rootPath, "uniappconfig.json");
+  var HBuilderConfig = path.join(rootPath, "HBuilderConfig.json");
 
-  fs.readFile(uniappconfig, function (err, data) {
+  fs.readFile(HBuilderConfig, function (err, data) {
     if (err) {
+      util.Tips("读取配置文件错误,检查是否存在HBuilderConfig.json")
       return console.log("读取配置文件错误", err);
     }
     var d = String(data);
@@ -91,16 +92,16 @@ function buildApp(rootPath) {
   if (!HBuilderCli) {
     return
   }
-  var uniappconfig = path.join(rootPath, "uniappconfig.json");
+  var HBuilderConfig = path.join(rootPath, "HBuilderConfig.json");
 
-  // D:\办公\HBuilderX\cli pack --config e:\icpc_workspace_2\shougang\APP\zdhlAliyunApp\uniappconfig.json  
+  // D:\办公\HBuilderX\cli pack --config e:\icpc_workspace_2\shougang\APP\zdhlAliyunApp\HBuilderConfig.json  
 
-  // console.log("buildApp uniappconfig", uniappconfig);
+  // console.log("buildApp HBuilderConfig", HBuilderConfig);
 
-  console.log(HBuilderCli, ["pack", "--config", uniappconfig]);
+  console.log(HBuilderCli, ["pack", "--config", HBuilderConfig]);
 
   var pack = cp.spawn(
-    HBuilderCli, ["pack", "--config", uniappconfig]
+    HBuilderCli, ["pack", "--config", HBuilderConfig]
   );
   pack.stdout.on('data', (data) => {
     var str = iconv.decode(Buffer.from(data, "binary"), "GBK")

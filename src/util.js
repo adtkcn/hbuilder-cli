@@ -47,7 +47,7 @@ var HBuilderCli = "";
  * @return {string} HBuilderCli
  */
 function GetHBuilderCli() {
-
+	HBuilderConfig = vscode.workspace.getConfiguration('HBuilder');
 	if (HBuilderConfig.get("dir")) {
 		HBuilderDir = HBuilderConfig.get("dir");
 	} else if (process.env.HBuilder) {
@@ -58,10 +58,8 @@ function GetHBuilderCli() {
 	}
 	HBuilderCli = path.join(HBuilderDir, "cli");
 	console.log("HBuilderDir完整路径: ", HBuilderCli);
-
-
 	if (HBuilderCli == 'cli') {
-		vscode.window.showInformationMessage('需要设置 HBuilder.dir为HBuilder的安装路径');
+		Tips('需要在vscode设置 HBuilder.dir为HBuilder的安装路径');
 		return null
 	} else {
 		return HBuilderCli

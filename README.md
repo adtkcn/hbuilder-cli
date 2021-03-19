@@ -8,14 +8,14 @@
 # 插件需求
 
 1. HBuilder 版本需要 `3.1.5` 以上,
-2. 需要项目根目录创建一个名为 `uniappconfig.json` 的配置文件
-3. 在 vscode 设置 HBuilder 的安装目录(优先级高), 或者将目录加入系统环境变量,环境变量名称为 HBuilder (功能写了,没试...)
+2. 需要项目根目录创建一个名为 `HBuilderConfig.json` 的配置文件
+3. 在 vscode 设置 HBuilder 的安装目录(优先级高), 或者将目录加入系统环境变量,环境变量名称为 HBuilder
 
 ```js
 "HBuilder.dir": "D:/办公/HBuilderX",
 ```
 
-### 需要在项目根目录创建一个名为 `uniappconfig.json` 的配置文件,内容如下
+### 需要在项目根目录创建一个名为 `HBuilderConfig.json` 的配置文件,内容如下
 
 ```js
 {

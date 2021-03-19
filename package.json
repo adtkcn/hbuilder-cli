@@ -1,13 +1,13 @@
 {
-	"name": "xh-uniapp-cli",
+	"name": "hbuilder-cli",
 	"publisher": "xiangheng",
-	"displayName": "xh-uniapp-cli",
-	"description": "HBuilder 的cli工具封装,可以打开HBuilder,添加项目,打包App",
+	"displayName": "HBuilder-cli",
+	"description": "HBuilder 的cli工具封装, 可以打开HBuilder,添加项目, 打包uniapp 和 5+App",
 	"repository": {
 		"type": "git",
-		"url": "git@github.com:adtkcn/vscodedemo.git"
+		"url": "git@github.com:adtkcn/hbuilder-cli.git"
 	},
-	"icon": "media/icon.jpg",
+	"icon": "media/hbuilder-icon.png",
 	"version": "0.0.4",
 	"engines": {
 		"vscode": "^1.54.0"
@@ -16,7 +16,7 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:xh-vscodedemo.openHBuilder"
+		"onCommand:hbuilder-cli.openHBuilder"
 	],
 	"main": "./extension.js",
 	"contributes": {
@@ -44,11 +44,11 @@
 		},
 		"commands": [
 			{
-				"command": "xh-vscodedemo.openHBuilder",
+				"command": "hbuilder-cli.openHBuilder",
 				"title": "打开HBuilder并添加项目"
 			},
 			{
-				"command": "xh-vscodedemo.buildApp",
+				"command": "hbuilder-cli.buildApp",
 				"title": "HBuilder打包APP"
 			}
 		],
@@ -56,12 +56,12 @@
 			"editor/context": [
 				{
 					"when": "editorFocus",
-					"command": "xh-vscodedemo.openHBuilder",
+					"command": "hbuilder-cli.openHBuilder",
 					"group": "6_px"
 				},
 				{
 					"when": "editorFocus",
-					"command": "xh-vscodedemo.buildApp",
+					"command": "hbuilder-cli.buildApp",
 					"group": "6_px"
 				}
 			]

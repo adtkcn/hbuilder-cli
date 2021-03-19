@@ -15,12 +15,12 @@ const path = require('path');
 function activate(context) {
 
 
-	console.log('Congratulations, your extension "xh-vscodedemo" is now active!');
+	console.log('Congratulations, your extension "hbuilder-cli" is now active!');
 
 	// 命令已在package.json文件中定义
 	// 现在用registerCommand提供命令的实现
 	// commandId参数必须与package.json中的command字段匹配 
-	let disposable = vscode.commands.registerCommand('xh-vscodedemo.helloWorld', function () {
+	let disposable = vscode.commands.registerCommand('hbuilder-cli.helloWorld', function () {
 		// 每次执行命令时，您将执行您在此处放置的代码
 		const panel = vscode.window.createWebviewPanel(
 			'catCoding', // 只供内部使用，这个webview的标识
@@ -42,7 +42,7 @@ function activate(context) {
 		panel.webview.html = getWebviewContent(catGifSrc);
 
 		// 向用户显示消息框
-		vscode.window.showInformationMessage('Hello World from xh-vscodedemo!');
+		vscode.window.showInformationMessage('Hello World from hbuilder-cli!');
 	});
 	console.log(context);
 	context.subscriptions.push(disposable);
