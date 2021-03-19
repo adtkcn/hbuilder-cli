@@ -1,6 +1,6 @@
 # Change Log
 
-All notable changes to the "vscodedemo" extension will be documented in this file.
+这也许是日志,但我不想写
 
 ## [Unreleased]
 

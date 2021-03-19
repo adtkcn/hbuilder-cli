@@ -1,13 +1,19 @@
 const vscode = require('vscode');
 const path = require("path");
 
+const Output = vscode.window.createOutputChannel('HBuilderCli'); // 可以有多个OutputChannel共存，使用参数名区分
+
+
 /**
  * 提示
  * @param {*} Text
  */
 function Tips(Text) {
 	Text && vscode.window.showInformationMessage(Text);
+	Text && Output.appendLine(Text);
 }
+
+
 
 
 /**
@@ -71,4 +77,5 @@ module.exports = {
 	GetWorkspace,
 	GetHBuilderCli,
 	HBuilderConfig,
+	Output,
 }

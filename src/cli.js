@@ -10,9 +10,17 @@ const util = require('./util.js');
 
 var config = null;
 
+
+/**
+ * @callback CallbackHandler
+ * @param {number} code -1 自定义错误code,-2是正常数据,-3是错误数据, 其他是进程code
+ * @param {string} [data] - 数据
+ */
+
 /**
  * 读取工作目录配置文件
  * @param {*} rootPath 工作根目录
+ * @param { CallbackHandler } callback
  */
 function readConfig(rootPath, callback) {
   var HBuilderConfig = path.join(rootPath, "HBuilderConfig.json");
@@ -30,34 +38,17 @@ function readConfig(rootPath, callback) {
 
   });
 }
+
+
 /**
- * 检查config是否完整
- * @param {string} platform all,android,ios
- * @return {boolean} 
+ * 读取工作目录配置文件
+ * @param {*} rootPath 工作根目录
+ * @param { CallbackHandler } [callback]
  */
-function CheckConfig(platform = 'all') {
-  var flag = false;
-  if (platform == 'all') {
-    flag = CheckAndroidConfig() && CheckIosConfig()
-  } else if (platform == 'android') {
-    flag = CheckAndroidConfig()
-  } else if (platform == 'ios') {
-    flag = CheckIosConfig()
-  }
-  return flag
-}
-
-function CheckAndroidConfig() {
-  return false
-}
-function CheckIosConfig() {
-  return false
-}
-
-
-function openHBuilder(rootPath) {
+function openHBuilder(rootPath, callback) {
   var HBuilderCli = util.GetHBuilderCli()
   if (!HBuilderCli) {
+    callback && callback(-1);
     return
   }
 
@@ -66,37 +57,52 @@ function openHBuilder(rootPath) {
     console.log("openHBuilder code " + code);
     if (code === 0) {
       setTimeout(() => {
-        openProject(rootPath);
+        AddProject(rootPath, callback);
       }, 10);
+    } else {
+      callback && callback(code);
     }
   });
 }
 
-function openProject(rootPath) {
-  // var newRootPath = rootPath.replace(/\\/g, "/");
+
+
+/**
+ * 添加项目到HBuilder工具
+ * @param {*} rootPath
+ * @param { CallbackHandler } callback
+ */
+function AddProject(rootPath, callback) {
   var HBuilderCli = util.GetHBuilderCli()
   if (!HBuilderCli) {
+    callback && callback(-1);
     return
   }
   var open = cp.exec(
     HBuilderCli + " project open --path " + rootPath
   );
   open.on("exit", function (code) {
-    console.log("openProject code " + code);
+    console.log("AddProject code " + code);
+    callback && callback(code);
   });
 }
 
-
-function buildApp(rootPath) {
+/**
+ *打包app
+ *
+ * @param {*} rootPath
+ * @param { CallbackHandler } callback
+ */
+function buildApp(rootPath, callback) {
   var HBuilderCli = util.GetHBuilderCli()
   if (!HBuilderCli) {
+    callback && callback(-1);
     return
   }
   var HBuilderConfig = path.join(rootPath, "HBuilderConfig.json");
 
   // D:\办公\HBuilderX\cli pack --config e:\icpc_workspace_2\shougang\APP\zdhlAliyunApp\HBuilderConfig.json  
 
-  // console.log("buildApp HBuilderConfig", HBuilderConfig);
 
   console.log(HBuilderCli, ["pack", "--config", HBuilderConfig]);
 
@@ -106,17 +112,20 @@ function buildApp(rootPath) {
   pack.stdout.on('data', (data) => {
     var str = iconv.decode(Buffer.from(data, "binary"), "GBK")
 
-    console.log(`stdout: ${str}`);
+    // console.log(`stdout: ${str}`);
+    callback && callback(-2, str);
   });
 
   pack.stderr.on('data', (data) => {
 
     var str = iconv.decode(Buffer.from(data, "binary"), "GBK")
-    console.error(`stderr: ${str}`);
+    callback && callback(-3, str);
+    // console.error(`stderr: ${str}`);
   });
 
   pack.on("exit", function (code) {
     console.log("buildApp code " + code);
+    callback && callback(code);
   });
 
 }
@@ -124,8 +133,7 @@ function buildApp(rootPath) {
 module.exports = {
   readConfig,
   openHBuilder,
-  openProject,
+  AddProject,
 
   buildApp,
-  CheckConfig
 }

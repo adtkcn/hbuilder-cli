@@ -5,7 +5,7 @@
 	"description": "HBuilder 的cli工具封装, 可以打开HBuilder,添加项目, 打包uniapp 和 5+App",
 	"repository": {
 		"type": "git",
-		"url": "git@github.com:adtkcn/hbuilder-cli.git"
+		"url": "https://github.com/adtkcn/hbuilder-cli.git"
 	},
 	"icon": "media/hbuilder-icon.png",
 	"version": "0.0.5",
@@ -16,7 +16,8 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:hbuilder-cli.openHBuilder"
+		"onCommand:*",
+		"workspaceContains:**/HBuilderConfig.json"
 	],
 	"main": "./extension.js",
 	"contributes": {
