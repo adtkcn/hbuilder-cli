@@ -55,7 +55,6 @@ function buildApp(document) {
 								util.Output.appendLine("仅支持window自动打开目录,其他的我没有,谁赞助一哈 !!!∑(ﾟДﾟノ)ノ  ");
 							}
 						}
-
 					}
 				} else if (code == -3 && data) {//进程异常返回数据
 					util.Output.appendLine(data); // 追加一行
