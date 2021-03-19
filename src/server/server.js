@@ -1,55 +1,50 @@
-const serve = require('koa-static');
-const Router = require('koa-router');
-const Koa = require('koa');
-const fs = require('fs');
-const { resolve } = require('path')
-
+const serve = require("koa-static");
+const Router = require("koa-router");
+const Koa = require("koa");
+const fs = require("fs");
+const path = require("path");
 
 const app = new Koa();
 const router = new Router(); // 创建路由，支持传递参数
 
-const util = require('./util.js');
+const config = require("../config");
 
-// $ GET /package.json
+router.get("/download", async (ctx) => {
+  try {
+    // var file = fs.readFileSync(resolve(ctx.query.link), "binary");
+    if (!ctx.query.link) {
+      ctx.body = "没有文件路径link参数";
+      return;
+    }
+    var link = decodeURIComponent(ctx.query.link);
 
-router.get('/open', async (ctx) => {
-	// var query = {
-	// 	link: ctx.query.link
-	// }
-	util.openDefaultBrowser(`http://${util.getLocalIP()}:3000?link=${ctx.query.link}`)
-})
-router.get('/download', async (ctx) => {
+    var filePath = path.resolve(link);
 
-	try {
-		var file = fs.readFileSync(resolve(ctx.query.filePath), 'binary')
-		console.log(file.);
-		var filename = 'app.apk'
-		ctx.set('Content-disposition', 'attachment;filename=' + filename)
-		ctx.body = file
-	} catch (error) {
-		console.log(error);
-	}
-})
+    var basename = path.basename(filePath);
+    console.log(basename); //文件名.扩展名
+    var extname = path.extname(filePath); //扩展名
+    console.log(extname);
 
-router.get('/stop', async (ctx) => {
-	process.exit(0);
-})
+    var file = fs.readFileSync(filePath);
+
+    // var filename = "app.apk";
+    ctx.set("Content-disposition", "attachment;filename=" + basename);
+    ctx.body = file;
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+// 静态文件
 app.use(serve(__dirname));
 
-
-
-// app.use(serve("E:/icpc_workspace_2/shougang/APP/zdhlAliyunApp/unpackage/release/apk/"));
-
 app.use(router.routes());
-app.use(router.allowedMethods({
-	// throw: true, // 抛出错误，代替设置响应头状态
-	// notImplemented: () => '不支持当前请求所需要的功能',
-	// methodNotAllowed: () => '不支持的请求方式'
-}));
+app.use(router.allowedMethods());
 
-app.listen(3000);
-
-
-
-
-console.log('listening on port 3000');
+exports.init = function () {
+  app.listen(config.port);
+  console.log("listening on port " + config.port);
+};
+exports.exit = function () {
+  process.exit(0);
+};
