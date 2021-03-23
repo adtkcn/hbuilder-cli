@@ -30,6 +30,29 @@ function activate(context) {
     commands.buildApp
   );
 
+  // 打包安卓正式app
+  let disposablebuildAndroidApp = vscode.commands.registerCommand(
+    "hbuilder-cli.buildAndroidApp",
+    commands.buildAndroidApp
+  );
+  // 打包安卓自定义基座
+  let disposablebuildCustomAndroidApp = vscode.commands.registerCommand(
+    "hbuilder-cli.buildCustomAndroidApp",
+    commands.buildCustomAndroidApp
+  );
+  // 打包ios App
+  let disposablebuildIOSApp = vscode.commands.registerCommand(
+    "hbuilder-cli.buildIOSApp",
+    commands.buildIOSApp
+  );
+  // 打包ios 基座
+  let disposablebuildCustomIOSApp = vscode.commands.registerCommand(
+    "hbuilder-cli.buildCustomIOSApp",
+    commands.buildCustomIOSApp
+  );
+
+
+
   // vscode.languages.registerHoverProvider(
   // 	{ scheme: 'file', language: 'html' },
   // 	{
@@ -53,6 +76,11 @@ function activate(context) {
   console.log("activate context", context);
   context.subscriptions.push(disposableOpenHBuilder);
   context.subscriptions.push(disposableBuildApp);
+
+  context.subscriptions.push(disposablebuildAndroidApp);
+  context.subscriptions.push(disposablebuildCustomAndroidApp);
+  context.subscriptions.push(disposablebuildIOSApp);
+  context.subscriptions.push(disposablebuildCustomIOSApp);
 }
 
 // 停用扩展时将调用此方法

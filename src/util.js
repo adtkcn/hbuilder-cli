@@ -2,6 +2,7 @@ const vscode = require("vscode");
 const path = require("path");
 
 const Output = vscode.window.createOutputChannel("HBuilderCli"); // 可以有多个OutputChannel共存，使用参数名区分
+const fs = require("fs");
 
 /**
  * 提示
@@ -11,6 +12,23 @@ function Tips(Text) {
   Text && vscode.window.showInformationMessage(Text);
   Text && Output.appendLine(Text);
 }
+
+// 递归创建目录 异步方法  
+function mkdirs(dirname, callback) {
+  fs.exists(dirname, function (exists) {
+    if (exists) {
+      // 是个目录则执行callback方法
+      callback();
+    } else {
+      // 递归调用mkdirs
+      mkdirs(path.dirname(dirname), function () {
+        fs.mkdir(dirname, callback);
+        console.log('在' + path.dirname(dirname) + '目录创建好' + dirname + '目录');
+      });
+    }
+  });
+}
+
 
 /**
  * 获取工作目录空间
@@ -120,6 +138,7 @@ const openDefaultBrowser = function (url) {
 
 module.exports = {
   Tips,
+  mkdirs,
   GetWorkspace,
   GetHBuilderCli,
   HBuilderConfig,

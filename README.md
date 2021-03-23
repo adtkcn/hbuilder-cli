@@ -1,23 +1,32 @@
 # hbuilder-cli
 
+# -----首先请注意-----
+
+在项目的 `manifest.json` 文件加入如下配置, 避免配置文件打包进 App
+
+```
+"unpackage":["HBuilderConfig.json"]
+
+```
+
 # 功能
 
 1. 打开 HBuilder,并将项目添加到 HBuilder
-2. 打包 安卓 和 ios app
+2. 打包 安卓 和 ios 正式和自定义 app
 3. 打包完成后自动打开浏览器显示二维码，方便安装到手机
 4. window 系统在安装完成后自动打开 app 所在目录
 
 # 插件需求
 
 1. HBuilder 版本需要 `3.1.5` 以上,
-2. 需要项目根目录创建一个名为 `HBuilderConfig.json` 的配置文件
-3. 在 vscode 设置 HBuilder 的安装目录(优先级高), 或者将目录加入系统环境变量,环境变量名称为 HBuilder
+
+2. 在 vscode 设置 HBuilder 的安装目录(优先级高), 或者将目录加入系统环境变量,环境变量名称为 HBuilder
 
 ```js
 "HBuilder.dir": "D:/办公/HBuilderX",
 ```
 
-### 需要在项目根目录创建一个名为 `HBuilderConfig.json` 的配置文件,内容如下
+3. 需要项目根目录创建一个名为 `HBuilderConfig.json` 的配置文件, 内容如下
 
 ```js
 {
@@ -38,7 +47,7 @@
     //安卓使用自有证书自有打包证书参数
     //安卓打包证书别名,自有证书打包填写的参数
     "certalias": "zdhlapp",
-    //安卓打包证书文件路径,自有证书打包填写的参数,  -------------------------绝对路径------------------
+    //安卓打包证书文件路径,自有证书打包填写的参数,  -------------相对路径(官方本身配置需要绝对路径,我考虑到切换电脑不方便,改为相对路径)-----
     "certfile": "E:/安卓key_证书/zdhlapp.keystore",
     //安卓打包证书密码,自有证书打包填写的参数
     "certpassword": "certpassword",
@@ -54,9 +63,9 @@
     //iOS打包是否打越狱包,只有值为true时打越狱包,false打正式包
     "isprisonbreak": false,
     //iOS使用自定义证书打包的profile文件路径
-    "profile": "E:/ios证书/阿里云版/zdhlAliyun.mobileprovision",
+    "profile": "E:/ios证书/阿里云版/zdhlAliyun.mobileprovision",//-------------相对路径(官方本身配置需要绝对路径,我考虑到切换电脑不方便,改为相对路径)-----
     //iOS使用自定义证书打包的p12文件路径
-    "certfile": "E:/ios证书/阿里云版/dev_Y3ND6S8D6F_NHS23456.p12",
+    "certfile": "E:/ios证书/阿里云版/dev_Y3ND6S8D6F_NHS23456.p12",//-------------相对路径(官方本身配置需要绝对路径,我考虑到切换电脑不方便,改为相对路径)-----
     //iOS使用自定义证书打包的证书密码
     "certpassword": "NHS23456"
   },

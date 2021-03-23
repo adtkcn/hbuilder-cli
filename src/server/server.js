@@ -6,6 +6,7 @@ const path = require("path");
 
 const app = new Koa();
 const router = new Router(); // 创建路由，支持传递参数
+const cp = require("child_process");
 
 const config = require("../config");
 
@@ -34,6 +35,33 @@ router.get("/download", async (ctx) => {
     console.log(error);
   }
 });
+
+router.get("/open", async (ctx) => {
+  try {
+    // var file = fs.readFileSync(resolve(ctx.query.link), "binary");
+    if (!ctx.query.link) {
+      ctx.body = "没有文件路径link参数";
+      return;
+    }
+    var link = decodeURIComponent(ctx.query.link);
+
+    if (process.platform == "win32") {
+      cp.exec("explorer.exe /select," + link);
+      ctx.body = {
+        code: 1,
+        msg: "ok"
+      };
+    } else {
+      ctx.body = {
+        code: 1,
+        msg: "暂时不支持"
+      };
+    }
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 
 // 静态文件
 app.use(serve(__dirname));
