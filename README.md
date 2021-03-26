@@ -14,7 +14,7 @@
 1. 打开 HBuilder,并将项目添加到 HBuilder
 2. 打包 安卓 和 ios 正式和自定义 app
 3. 打包完成后自动打开浏览器显示二维码，方便安装到手机
-4. window 系统在安装完成后自动打开 app 所在目录
+4. 在window系统, 点击二维码下方地址, 打开 app 所在目录
 
 # 插件需求
 
@@ -28,6 +28,9 @@
 
 3. 需要项目根目录创建一个名为 `HBuilderConfig.json` 的配置文件, 内容如下
 https://hx.dcloud.net.cn/cli/pack?id=%e6%89%93%e5%8c%85%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6
+
+> 会忽略配置中的 platform(平台),iscustom(是否基座) 字段
+
 ```js
 {
   //项目名字或项目绝对路径
