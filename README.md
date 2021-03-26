@@ -27,11 +27,11 @@
 ```
 
 3. 需要项目根目录创建一个名为 `HBuilderConfig.json` 的配置文件, 内容如下
-
+https://hx.dcloud.net.cn/cli/pack?id=%e6%89%93%e5%8c%85%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6
 ```js
 {
   //项目名字或项目绝对路径
-  "project": "zdhlAliyunApp",
+  "project": "和目录名保持一致",
   //打包平台 默认值android  值有"android","ios" 如果要打多个逗号隔开打包平台
   "platform": "android,ios",
   //是否使用自定义基座 默认值false  true自定义基座 false自定义证书
@@ -48,26 +48,26 @@
     //安卓打包证书别名,自有证书打包填写的参数
     "certalias": "zdhlapp",
     //安卓打包证书文件路径,自有证书打包填写的参数,  -------------相对路径(官方本身配置需要绝对路径,我考虑到切换电脑不方便,改为相对路径)-----
-    "certfile": "E:/安卓key_证书/zdhlapp.keystore",
+    "certfile": "../zdhlapp.keystore",
     //安卓打包证书密码,自有证书打包填写的参数
-    "certpassword": "certpassword",
+    "certpassword": "",
     //安卓平台要打的渠道包 取值有"google","yyb","360","huawei","xiaomi","oppo","vivo"，如果要打多个逗号隔开
     "channels": ""
   },
   //ios打包参数
   "ios": {
     //ios appid
-    "bundle": "plus.H5E14EBC2",
+    "bundle": "plus.11111111111",
     //ios打包支持的设备类型 默认值iPhone 值有"iPhone","iPad" 如果要打多个逗号隔开打包平台
     "supporteddevice": "iPhone,iPad",
     //iOS打包是否打越狱包,只有值为true时打越狱包,false打正式包
     "isprisonbreak": false,
     //iOS使用自定义证书打包的profile文件路径
-    "profile": "E:/ios证书/阿里云版/zdhlAliyun.mobileprovision",//-------------相对路径(官方本身配置需要绝对路径,我考虑到切换电脑不方便,改为相对路径)-----
+    "profile": "../ios.mobileprovision",//-------------相对路径(官方本身配置需要绝对路径,我考虑到切换电脑不方便,改为相对路径)-----
     //iOS使用自定义证书打包的p12文件路径
-    "certfile": "E:/ios证书/阿里云版/dev_Y3ND6S8D6F_NHS23456.p12",//-------------相对路径(官方本身配置需要绝对路径,我考虑到切换电脑不方便,改为相对路径)-----
+    "certfile": "../ios.p12",//-------------相对路径(官方本身配置需要绝对路径,我考虑到切换电脑不方便,改为相对路径)-----
     //iOS使用自定义证书打包的证书密码
-    "certpassword": "NHS23456"
+    "certpassword": ""
   },
   //是否混淆 true混淆 false关闭
   "isconfusion": false,
