@@ -10,7 +10,7 @@ function OpenHBuilder(document) {
   return new Promise(async (resolve, reject) => {
     var workspace = util.GetWorkspace(document);
     if (!workspace) {
-      util.Tips("未获取到工作空间");
+      util.Tips("未获取到工作空间，请先打开某个文件");
       return;
     }
     try {

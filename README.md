@@ -1,37 +1,38 @@
-# hbuilder-cli
+# vscode 插件 hbuilder-cli
 
-# -----首先请注意-----
+# 首先请注意!!!!!!
 
 在项目的 `manifest.json` 文件加入如下配置, 避免配置文件打包进 App
 
 ```
 "unpackage":["HBuilderConfig.json"]
-
 ```
 
 # 功能
 
 1. 打开 HBuilder,并将项目添加到 HBuilder
 2. 打包 安卓 和 ios 正式和自定义 app
-3. 打包完成后自动打开浏览器显示二维码，方便安装到手机
-4. 在window系统, 点击二维码下方地址, 打开 app 所在目录
+3. 打包 安卓 完成后自动打开浏览器显示二维码，方便安装到手机（ios 需要手动在 hbuilder 工具下载）
+4. 在 window 系统, 点击二维码下方地址, 打开 app 所在目录
+5. 证书使用相对路径，可以放在项目外部 (官方本身配置需要绝对路径，换电脑不方便)
 
 # 插件需求
 
 1. HBuilder 版本需要 `3.1.5` 以上,
 
-2. 在 vscode 设置 HBuilder 的安装目录(优先级高), 或者将目录加入系统环境变量,环境变量名称为 HBuilder
+2. - 在 vscode 设置 HBuilder 的安装目录(优先级高),
+   - 或者将目录加入系统环境变量, 环境变量名称为 HBuilder
 
 ```js
 "HBuilder.dir": "D:/办公/HBuilderX",
 ```
 
 3. 需要项目根目录创建一个名为 `HBuilderConfig.json` 的配置文件, 内容如下
-https://hx.dcloud.net.cn/cli/pack?id=%e6%89%93%e5%8c%85%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6
+   https://hx.dcloud.net.cn/cli/pack
 
-> 会忽略配置中的 platform(平台),iscustom(是否基座) 字段
+   会忽略配置中的 platform(平台)， iscustom(是否基座) 字段
 
-```js
+```json
 {
   //项目名字或项目绝对路径
   "project": "和目录名保持一致",
@@ -50,7 +51,7 @@ https://hx.dcloud.net.cn/cli/pack?id=%e6%89%93%e5%8c%85%e9%85%8d%e7%bd%ae%e6%96%
     //安卓使用自有证书自有打包证书参数
     //安卓打包证书别名,自有证书打包填写的参数
     "certalias": "zdhlapp",
-    //安卓打包证书文件路径,自有证书打包填写的参数,  -------------相对路径(官方本身配置需要绝对路径,我考虑到切换电脑不方便,改为相对路径)-----
+    //安卓打包证书文件路径,自有证书打包填写的参数,  ！！！相对路径(官方本身配置需要绝对路径，切换电脑不方便,改为相对路径)
     "certfile": "../zdhlapp.keystore",
     //安卓打包证书密码,自有证书打包填写的参数
     "certpassword": "",
@@ -66,9 +67,9 @@ https://hx.dcloud.net.cn/cli/pack?id=%e6%89%93%e5%8c%85%e9%85%8d%e7%bd%ae%e6%96%
     //iOS打包是否打越狱包,只有值为true时打越狱包,false打正式包
     "isprisonbreak": false,
     //iOS使用自定义证书打包的profile文件路径
-    "profile": "../ios.mobileprovision",//-------------相对路径(官方本身配置需要绝对路径,我考虑到切换电脑不方便,改为相对路径)-----
+    "profile": "../ios.mobileprovision", // ！！！相对路径(官方本身配置需要绝对路径，切换电脑不方便,改为相对路径)
     //iOS使用自定义证书打包的p12文件路径
-    "certfile": "../ios.p12",//-------------相对路径(官方本身配置需要绝对路径,我考虑到切换电脑不方便,改为相对路径)-----
+    "certfile": "../ios.p12", // ！！！相对路径(官方本身配置需要绝对路径，切换电脑不方便,改为相对路径)
     //iOS使用自定义证书打包的证书密码
     "certpassword": ""
   },
@@ -83,7 +84,6 @@ https://hx.dcloud.net.cn/cli/pack?id=%e6%89%93%e5%8c%85%e9%85%8d%e7%bd%ae%e6%96%
   //加入换量联盟 true加入 false不加入
   "exchange": false
 }
-
 ```
 
 # 其他

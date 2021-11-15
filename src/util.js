@@ -49,12 +49,6 @@ function GetWorkspace(document) {
   });
   // workspace.uri.fsPath 项目路径
   return workspace;
-
-  // if (workspace) {
-  // cli.readConfig(workspace.uri.fsPath)
-  // } else {
-  // console.log('未获取到工作空间');
-  // }
 }
 
 var HBuilderConfig = vscode.workspace.getConfiguration("HBuilder");
